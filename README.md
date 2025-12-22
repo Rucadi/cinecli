@@ -16,9 +16,21 @@ It lets you search movies from YTS and instantly open torrents using either
 ## 🚀 Installation (development)
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/cinecli.git
-cd cinecli
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+pip install cinecli
+```
+## Usage
+
+- Power User
+```bash
+cinecli interactive
+```
+
+- Quick run
+```bash
+
+cinecli search matrix
+
+cinecli watch [id]
+
+```
 
