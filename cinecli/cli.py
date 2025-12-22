@@ -33,13 +33,12 @@ console = Console()
 
 @app.command()
 def search(
-    query: str = typer.Argument(..., help="Movie name to search for"),
-    limit: int = typer.Option(10, help="Number of results to show"),
+    query: list[str] = typer.Argument(..., help="Movie name to search for"),
+    limit: int = typer.Option(10),
 ):
-    """
-    Search movies on YTS
-    """
-    movies = search_movies(query, limit)
+    search_query = " ".join(query)
+    movies = search_movies(search_query, limit)
+
 
     if not movies:
         console.print("[red]❌ No movies found.[/red]")
