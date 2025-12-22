@@ -1,6 +1,7 @@
 import typer
 from rich.prompt import Prompt
 from rich.console import Console
+from cinecli.config import load_config
 
 from cinecli.api import search_movies, get_movie_details
 from cinecli.ui import (
@@ -12,6 +13,7 @@ from cinecli.magnets import (
     build_magnet,
     open_magnet,
     download_torrent,
+    select_best_torrent,
 )
 
 # -------------------------------------------------
@@ -21,6 +23,7 @@ from cinecli.magnets import (
 app = typer.Typer(
     help="🎬 CineCLI — Browse and torrent movies from your terminal",
 )
+config = load_config()
 
 console = Console()
 
@@ -63,19 +66,35 @@ def watch(movie_id: int):
         raise typer.Exit(code=1)
 
     show_torrents(torrents)
+    auto = typer.confirm("🎯 Auto-select best torrent?", default=True)
 
-    index = Prompt.ask(
-        "Select torrent index to use",
-        choices=[str(i) for i in range(len(torrents))],
-    )
+    if auto:
+        torrent = select_best_torrent(torrents)
+        typer.echo(
+            f"🎯 Auto-selected torrent: {torrent['quality']} ({torrent['size']})"
+        )
+    else:
+        index = typer.prompt(
+            "Select torrent index",
+            type=int
+        )
 
-    torrent = torrents[int(index)]
+        if index < 0 or index >= len(torrents):
+            typer.echo("❌ Invalid torrent index")
+            raise typer.Exit(code=1)
+
+        torrent = torrents[index]
+
+
+
+    default_action = config.get("default_action", "magnet")
 
     action = Prompt.ask(
         "Choose action",
         choices=["magnet", "torrent"],
-        default="magnet",
+        default=default_action,
     )
+
 
     if action == "magnet":
         magnet = build_magnet(
@@ -153,9 +172,3 @@ def interactive():
         download_torrent(torrent["url"])
         console.print("[green]⬇ Torrent file download started.[/green]")
 
-# -------------------------------------------------
-# Entry point
-# -------------------------------------------------
-
-if __name__ == "__main__":
-    app()
