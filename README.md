@@ -4,20 +4,33 @@
 ![Downloads](https://img.shields.io/pypi/dm/cinecli)
 
 
+![Stars](https://img.shields.io/github/stars/eyeblech/cinecli?style=flat-square)
+
+![Views](https://komarev.com/ghpvc/?username=eyeblech&repo=cinecli&style=flat-square)
+
 ---
 
 ## 📡 YTS API Status
 
+![YTS API](https://img.shields.io/github/actions/workflow/status/eyeblech/cinecli/api-health.yml?label=YTS%20API&style=for-the-badge)
+
 <p align="center">
-  <img src="https://github.com/eyeblech/cinecli/actions/workflows/api-health.yml/badge.svg" />
+  <img
+    src="https://github.com/eyeblech/cinecli/actions/workflows/api-health.yml/badge.svg"
+    alt="YTS API Status"
+  />
 </p>
 
 <p align="center">
-  🟢 <strong>API STATUS: ACTIVE & OPERATIONAL</strong><br/>
-  <sub>All CineCLI features are fully functional.</sub>
+  <strong>Status is automatically monitored every 15 minutes.</strong><br/>
+  <sub>
+    🟢 Green = Operational &nbsp; • &nbsp;
+    🔴 Red = Outage / API Down
+  </sub>
 </p>
 
 ---
+
 
 # 🎬 CineCLI
 
@@ -178,4 +191,8 @@ Built by **eyeblech**
 ![Open Source](https://img.shields.io/badge/open--source-yes-brightgreen)
 ![Maintained](https://img.shields.io/badge/maintained-yes-success)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-purple)
+
+## ⭐ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=eyeblech/cinecli&type=Date)](https://star-history.com/#eyeblech/cinecli&Date)
 
