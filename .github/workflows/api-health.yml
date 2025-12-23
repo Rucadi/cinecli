@@ -1,0 +1,27 @@
+name: YTS API Status
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # every 15 minutes
+  workflow_dispatch:
+
+jobs:
+  healthcheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check YTS API health
+        run: |
+          echo "Checking YTS API status..."
+
+          RESPONSE=$(curl -s https://yts.mx/api/v2/list_movies.json)
+
+          STATUS=$(echo "$RESPONSE" | jq -r '.status')
+
+          if [ "$STATUS" != "ok" ]; then
+            echo "❌ API status is NOT ok"
+            echo "$RESPONSE"
+            exit 1
+          fi
+
+          echo "✅ API status is OK"
