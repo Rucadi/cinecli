@@ -3,6 +3,9 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Downloads](https://img.shields.io/pypi/dm/cinecli)
 
+
+![YTS API Status](https://github.com/eyeblech/cinecli/actions/workflows/yts-api-status.yml/badge.svg)
+
 # 🎬 CineCLI
 
 > Browse, inspect, and launch movie torrents directly from your terminal.  
